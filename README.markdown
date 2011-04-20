@@ -17,48 +17,48 @@ You can try to use partial mocks, create derived classes, and implement abstract
 
 You get the following interfaces:
 
-ICache - Cache
-IHttpApplication - HttpApplication
-IHttpApplicationState - HttpApplicationState
-IHttpCachePolicy - CachePolicy
-IHttpClientCertificate - HttpClientCertificate
-IHttpContext - HttpContext
-IHttpFileCollection - HttpFileCollection
-IHttpModuleCollection - HttpModuleCollection
-IHttpRequest - HttpRequest
-IHttpResponse - HttpResponse
-IHttpServerUtility - HttpServerUtility
-IHttpSession - System.Web.SessionState.HttpSessionState
-ITraceContext - TraceContext
+ICache - Cache<br/>
+IHttpApplication - HttpApplication<br/>
+IHttpApplicationState - HttpApplicationState<br/>
+IHttpCachePolicy - CachePolicy<br/>
+IHttpClientCertificate - HttpClientCertificate<br/>
+IHttpContext - HttpContext<br/>
+IHttpFileCollection - HttpFileCollection<br/>
+IHttpModuleCollection - HttpModuleCollection<br/>
+IHttpRequest - HttpRequest<br/>
+IHttpResponse - HttpResponse<br/>
+IHttpServerUtility - HttpServerUtility<br/>
+IHttpSession - System.Web.SessionState.HttpSessionState<br/>
+ITraceContext - TraceContext<br/>
 
 You can configure a DI container like StructureMap to use the interfaces like this:
 
 <pre>
 ObjectFactory.Initialize(x =>
 {
-    x.For<IHttpApplication>().Use(
+    x.For&lt;IHttpApplication&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.ApplicationInstance));
-    x.For<IHttpApplicationState>().Use(
+    x.For&lt;IHttpApplicationState&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Application));
-    x.For<IHttpCachePolicy>().Use(
+    x.For&lt;IHttpCachePolicy&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Response.Cache));
-    x.For<IHttpClientCertificate>().Use(
+    x.For&lt;IHttpClientCertificate&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Request.ClientCertificate));
-    x.For<IHttpContext>().Use(
+    x.For&lt;IHttpContext&gt;().Use(
         c => WebContext.Cast(HttpContext.Current));
-    x.For<IHttpFileCollection>().Use(
+    x.For&lt;IHttpFileCollection&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Request.Files));
-    x.For<IHttpModuleCollection>().Use(
+    x.For&lt;IHttpModuleCollection&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.ApplicationInstance.Modules));
-    x.For<IHttpRequest>().Use(
+    x.For&lt;IHttpRequest&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Request));
-    x.For<IHttpResponse>().Use(
+    x.For&lt;IHttpResponse&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Response));
-    x.For<IHttpServerUtility>().Use(
+    x.For&lt;IHttpServerUtility&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Server));
-    x.For<IHttpSession>().Use(
+    x.For&lt;IHttpSession&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Session));
-    x.For<ITraceContext>().Use(
+    x.For&lt;ITraceContext&gt;().Use(
         c => WebContext.Cast(HttpContext.Current.Trace));
 }
 </pre>
@@ -87,4 +87,6 @@ public class OrderController
 
 I can easily test these controller methods because I can stub out the interfaces in my tests.
 
-Win!
+This was originally inspired by <a href="http://haacked.com/archive/2007/09/09/ihttpcontext-and-other-interfaces-for-your-duck-typing-benefit.aspx">this blog post</a> by Phil Haack.  In Phil's post, he uses a library that dynamically generates the interfaces.  I ran into some problems with the library that did this... it sometimes would throw an exception generating the interface code and I would have to restart IIS.  So I spent the 20 minutes that it took to create the interfaces and implement the proxy classes by hand.
+
+Have fun!
