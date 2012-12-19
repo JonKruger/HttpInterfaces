@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HttpInterfaces</id>
+    <version>1.0.0</version>
+    <authors>Jon Kruger (via Phil Haack's blog)</authors>
+    <owners>Jon Kruger</owners>
+    <projectUrl>http://github.com/JonKruger/HttpInterfaces</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Proxy classes for HttpContext and related objects, based on Phil Haack's blog post.</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+  </metadata>
+</package>

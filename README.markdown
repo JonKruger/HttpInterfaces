@@ -89,4 +89,10 @@ I can easily test these controller methods because I can stub out the interfaces
 
 This was originally inspired by <a href="http://haacked.com/archive/2007/09/09/ihttpcontext-and-other-interfaces-for-your-duck-typing-benefit.aspx">this blog post</a> by Phil Haack.  In Phil's post, he uses a library that dynamically generates the interfaces.  I ran into some problems with the library that did this... it sometimes would throw an exception generating the interface code and I would have to restart IIS.  So I spent the 20 minutes that it took to create the interfaces and implement the proxy classes by hand.
 
+## Installation
+
+Easiest way to install is to use nuget.
+
+<pre> Install-Package HttpInterfaces</pre>
+
 Have fun!
